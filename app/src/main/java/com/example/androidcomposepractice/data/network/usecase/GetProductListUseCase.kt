@@ -3,11 +3,11 @@ package com.example.androidcomposepractice.data.network.usecase
 import com.example.androidcomposepractice.data.model.response.ProductResItem
 import com.example.androidcomposepractice.data.network.repository.Repository
 import com.example.androidcomposepractice.ui.component.UiState
-import jakarta.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import javax.inject.Inject
 
 class GetProductListUseCase @Inject constructor(
     private val repository: Repository

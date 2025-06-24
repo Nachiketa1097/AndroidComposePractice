@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiService {
-    @POST(APIData.PRODUCTS)
+    @GET(APIData.PRODUCTS)
     suspend fun getProductList(): List<ProductResItem>
 }
