@@ -21,13 +21,37 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions += "version"
+
+    productFlavors {
+        create("free") {
+            dimension = "version"
+            applicationIdSuffix = ".free"
+            versionNameSuffix = "-free"
+        }
+
+        create("paid") {
+            dimension = "version"
+            applicationIdSuffix = ".paid"
+            versionNameSuffix = "-paid"
+            minSdk = 21
+        }
+
+
+    }
+
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        debug {
+            isMinifyEnabled = false
+            applicationIdSuffix = ".debug"
         }
     }
     compileOptions {
@@ -74,3 +98,31 @@ dependencies {
     // Lifecycle & Compose
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 }
+tasks.register("hello") {
+    println("Hello World")
+    doFirst {
+        println("First run")
+    }
+    doLast {
+        println("Last run")
+    }
+}
+
+val copyApk by tasks.registering(Copy::class) {
+    val sourceFile = layout.buildDirectory.file("outputs/apk/free/debug/app-free-debug.apk")
+    val destDir = layout.projectDirectory.dir("apk")
+
+    from(sourceFile.map { it.asFile.parent })
+    into(destDir)
+
+    rename("app-debug.apk", "gradle-experiment.apk")
+
+}
+
+afterEvaluate {
+    tasks.named("assembleFreeDebug").configure {
+        finalizedBy(copyApk)
+    }
+}
+
+

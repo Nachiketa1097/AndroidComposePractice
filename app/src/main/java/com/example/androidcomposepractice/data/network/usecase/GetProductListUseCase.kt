@@ -12,6 +12,7 @@ import javax.inject.Inject
 class GetProductListUseCase @Inject constructor(
     private val repository: Repository
 ) {
+    //operator is used here to invoke class GetProductListUseCase instance
     operator fun invoke(): Flow<UiState<List<ProductResItem>>> = flow {
         emit(UiState.Loading)
         try {
