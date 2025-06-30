@@ -17,19 +17,28 @@
         tools:targetApi="31">
         <activity
             android:name=".study.activity.LifecycleActivity"
-            android:exported="true"
-            android:label="@string/app_name"
+            android:exported="false"
+            android:launchMode="singleTop"
             android:theme="@style/Theme.AndroidComposePractice">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--            &lt;!&ndash; Main launcher intent &ndash;&gt;-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+
+<!--            &lt;!&ndash; Combined SEND intent for text and image &ndash;&gt;-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.SEND" />-->
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <data android:mimeType="text/plain" />-->
+<!--                <data android:mimeType="image/*" />-->
+<!--            </intent-filter>-->
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:label="@string/app_name"
             android:theme="@style/Theme.AndroidComposePractice">
 
         </activity>
@@ -37,10 +46,34 @@
         <activity
             android:name=".study.activity.LifecycleActivity2"
             android:exported="false"
-            android:label="@string/app_name"
             android:theme="@style/Theme.AndroidComposePractice">
 
         </activity>
+
+        <activity android:name=".study.activity.launchmode.LaunchModeMainActivity"
+            android:exported="true"
+            android:launchMode="standard">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".study.activity.launchmode.StandardActivity"
+            android:exported="true"
+            android:launchMode="standard" />
+
+        <activity android:name=".study.activity.launchmode.SingleTopActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+
+        <activity android:name=".study.activity.launchmode.SingleTaskActivity"
+            android:exported="true"
+            android:launchMode="singleTask" />
+
+        <activity android:name=".study.activity.launchmode.SingleInstanceActivity"
+            android:exported="true"
+            android:launchMode="singleInstance" />
     </application>
 
 </manifest>
